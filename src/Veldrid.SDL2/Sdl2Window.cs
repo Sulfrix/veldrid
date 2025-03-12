@@ -503,7 +503,18 @@ namespace Veldrid.Sdl2
 
         private void HandleDropEvent(SDL_DropEvent dropEvent)
         {
+            if (dropEvent.file == null)
+            {
+                Console.WriteLine("Error: encountered a null DropEvent. Discarding event.");
+                return;
+            }
             string file = Utilities.GetString(dropEvent.file);
+
+            if (file == null)
+            {
+                return;
+            }
+
             SDL_free(dropEvent.file);
 
             if (dropEvent.type == SDL_EventType.DropFile)

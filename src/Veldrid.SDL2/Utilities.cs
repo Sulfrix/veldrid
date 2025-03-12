@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace Veldrid.Sdl2
 {
@@ -6,15 +7,26 @@ namespace Veldrid.Sdl2
     {
         public static unsafe string GetString(byte* stringStart)
         {
-            if (stringStart == null) { return null; }
-
-            int characters = 0;
-            while (stringStart[characters] != 0)
+            try
             {
-                characters++;
+                if (stringStart == null)
+                {
+                    return null;
+                }
+
+                int characters = 0;
+                while (stringStart[characters] != 0)
+                {
+                    characters++;
+                }
+
+                return Encoding.UTF8.GetString(stringStart, characters);
+            }
+            catch (Exception e)
+            {
+                return null;
             }
 
-            return Encoding.UTF8.GetString(stringStart, characters);
         }
     }
 }
