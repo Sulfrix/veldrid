@@ -3,13 +3,24 @@ dotnet restore src/Veldrid.sln
 
 export UseStableVersions=true
 
-dotnet pack -c Release src/Veldrid.OpenGLBindings/Veldrid.OpenGLBindings.csproj
-dotnet pack -c Release src/Veldrid.MetalBindings/Veldrid.MetalBindings.csproj
-dotnet pack -c Release src/Veldrid/Veldrid.csproj
-dotnet pack -c Release src/Veldrid.Utilities/Veldrid.Utilities.csproj
-dotnet pack -c Release src/Veldrid.ImGui/Veldrid.ImGui.csproj
-dotnet pack -c Release src/Veldrid.ImageSharp/Veldrid.ImageSharp.csproj
-dotnet pack -c Release src/Veldrid.SDL2/Veldrid.SDL2.csproj
-dotnet pack -c Release src/Veldrid.StartupUtilities/Veldrid.StartupUtilities.csproj
-dotnet pack -c Release src/Veldrid.VirtualReality/Veldrid.VirtualReality.csproj
-dotnet pack -c Release src/Veldrid.RenderDoc/Veldrid.RenderDoc.csproj
+rm -r bin/Packages/*
+
+pack_and_release() {
+  echo "Packing $2 ($1)"
+  dotnet pack -c $1 "src/$2/$2.csproj"
+}
+
+pack_and_release_all() {
+  pack_and_release $1 Veldrid.OpenGLBindings
+  pack_and_release $1 Veldrid.MetalBindings
+  pack_and_release $1 Veldrid
+  pack_and_release $1 Veldrid.Utilities
+  pack_and_release $1 Veldrid.ImGui
+  pack_and_release $1 Veldrid.ImageSharp
+  pack_and_release $1 Veldrid.SDL2
+  pack_and_release $1 Veldrid.StartupUtilities
+  #pack_and_release $1 Veldrid.VirtualReality
+  #pack_and_release $1 Veldrid.RenderDoc
+}
+
+pack_and_release_all Release

@@ -5,6 +5,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile Condition="'$(Configuration)' == 'Release'">$(BinDir)/$(AssemblyName).xml</DocumentationFile>
     <RootNamespace>Veldrid</RootNamespace>
+    <RepositoryUrl>https://github.com/Sulfrix/veldrid</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

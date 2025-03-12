@@ -7,6 +7,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IsPackable>false</IsPackable>
     <AssetsDir>$(MSBuildThisFileDirectory)Assets</AssetsDir>
+    <RepositoryUrl>https://github.com/Sulfrix/veldrid</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
